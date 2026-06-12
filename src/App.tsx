@@ -11,11 +11,16 @@ import Join from './components/Join';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
 import Toast, { type ToastData } from './components/Toast';
+import Preloader from './components/Preloader';
 
 export default function App() {
   const [counts, setCounts] = useState<Record<number, number>>({});
   const [cartOpen, setCartOpen] = useState(false);
   const [toast, setToast] = useState<ToastData | null>(null);
+  // revealed: site mounts as the preloader curtain starts lifting, so the hero
+  // entrance plays into the reveal. loaderDone: curtain fully gone, unmount it.
+  const [revealed, setRevealed] = useState(false);
+  const [loaderDone, setLoaderDone] = useState(false);
 
   const showToast = (msg: string) => setToast({ id: Date.now(), msg });
 
@@ -28,23 +33,30 @@ export default function App() {
 
   return (
     <div style={{ fontFamily: "'Inter', sans-serif" }}>
-      <ProgressBar />
-      <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
-      <Hero />
-      <Marquee />
-      <Collection onAdd={addToCart} />
-      <Craft />
-      <Reviews />
-      <Join showToast={showToast} />
-      <Footer showToast={showToast} />
-      <CartDrawer
-        open={cartOpen}
-        onClose={() => setCartOpen(false)}
-        counts={counts}
-        setCounts={setCounts}
-        showToast={showToast}
-      />
-      <Toast toast={toast} />
+      {revealed && (
+        <>
+          <ProgressBar />
+          <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
+          <Hero />
+          <Marquee />
+          <Collection onAdd={addToCart} />
+          <Craft />
+          <Reviews />
+          <Join showToast={showToast} />
+          <Footer showToast={showToast} />
+          <CartDrawer
+            open={cartOpen}
+            onClose={() => setCartOpen(false)}
+            counts={counts}
+            setCounts={setCounts}
+            showToast={showToast}
+          />
+          <Toast toast={toast} />
+        </>
+      )}
+      {!loaderDone && (
+        <Preloader onReveal={() => setRevealed(true)} onDone={() => setLoaderDone(true)} />
+      )}
     </div>
   );
 }
