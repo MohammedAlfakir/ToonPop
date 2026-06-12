@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #111111;
+}
+
+/*
+  Initial hidden state for scroll-in elements.
+  GSAP animates TO opacity:1 / y:0 and clears the transform inline style,
+  leaving opacity:1 as the permanent inline override of this class.
+  This means elements are hidden at CSS level — no GSAP from() flash.
+*/
+/*
+  Hidden state for scroll-in elements — opacity ONLY, never transform.
+  All motion comes from gsap.fromTo(), which owns its inline transform from
+  start to finish. Putting transforms here caused elements to snap back to
+  the CSS state once GSAP cleared its inline styles.
+*/
+.anim-start,
+.anim-card {
+  opacity: 0;
+}
+
+/* Display type used across the page */
+.anton {
+  font-family: 'Anton', sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+/* Small uppercase section label */
+.eyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* Circular icon button — same recipe as the hero arrows */
+.btn-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 150ms, background-color 150ms;
+}
+.btn-circle:hover {
+  transform: scale(1.08);
+  background-color: var(--btn-hover, rgba(255, 255, 255, 0.12));
+}
+
+/* Pill button for CTAs */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 2px solid currentColor;
+  border-radius: 9999px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: transform 150ms, background-color 150ms;
+}
+.btn-pill:hover {
+  transform: scale(1.05);
+  background-color: var(--btn-hover, rgba(255, 255, 255, 0.12));
+}
