@@ -110,22 +110,25 @@ export default function Collection({ onAdd }: CollectionProps) {
                   }}
                 />
               </div>
-              <div className="p-5 sm:p-6 relative" style={{ zIndex: 3 }}>
-                <div className="flex items-baseline justify-between gap-3">
-                  <p className="text-xs" style={{ opacity: 0.85, lineHeight: 1.5 }}>
-                    {character.tagline}
-                  </p>
-                  <span className="anton" style={{ fontSize: 24, opacity: 0.95 }}>
-                    ${character.price}
-                  </span>
-                </div>
+              <div className="px-5 sm:px-6 pt-1 pb-5 sm:pb-6 relative" style={{ zIndex: 3 }}>
+                <p className="text-xs mb-3" style={{ opacity: 0.9, lineHeight: 1.5 }}>
+                  {character.tagline}
+                </p>
                 <button
                   type="button"
                   onClick={() => onAdd(index)}
-                  className="btn-pill w-full mt-5 px-5 py-3"
+                  aria-label={`Add ${character.name} to cart — $${character.price}`}
+                  className="card-cta w-full flex items-center justify-between gap-3 rounded-full pl-3 pr-4 py-2"
                 >
-                  Add to Cart
-                  <Plus size={14} strokeWidth={2.5} />
+                  <span className="flex items-center gap-2.5">
+                    <span className="card-cta-plus inline-flex items-center justify-center rounded-full">
+                      <Plus size={15} strokeWidth={3} />
+                    </span>
+                    Add to Cart
+                  </span>
+                  <span className="anton" style={{ fontSize: 24 }}>
+                    ${character.price}
+                  </span>
                 </button>
               </div>
             </div>

@@ -175,20 +175,44 @@ export default function Craft() {
                 ? stat.value.toFixed(stat.decimals)
                 : stat.value.toLocaleString('en-US');
               return (
-                <div key={stat.label} className="craft-stat">
+                <div
+                  key={stat.label}
+                  className="craft-stat group relative overflow-hidden rounded-2xl p-6 sm:p-7 transition-transform duration-300 hover:-translate-y-1"
+                  style={{
+                    backgroundColor: `${stat.color}14`,
+                    border: `1px solid ${stat.color}33`,
+                  }}
+                >
+                  {/* accent line draws itself across the top edge */}
                   <span
-                    className="stat-bar block rounded-full"
+                    className="stat-bar absolute top-0 left-0 block"
                     style={{
-                      width: 56,
-                      height: 6,
+                      width: '100%',
+                      height: 5,
                       backgroundColor: stat.color,
                       transform: 'scaleX(0)',
                       transformOrigin: 'left',
                     }}
                   />
+                  {/* oversized ghost symbol bleeding off the corner */}
+                  <span
+                    aria-hidden
+                    className="anton absolute pointer-events-none select-none transition-transform duration-500 group-hover:scale-110"
+                    style={{
+                      right: '-1%',
+                      bottom: '-22%',
+                      fontSize: 'clamp(120px, 12vw, 190px)',
+                      color: stat.color,
+                      opacity: 0.1,
+                      lineHeight: 1,
+                      transformOrigin: 'bottom right',
+                    }}
+                  >
+                    {stat.suffix}
+                  </span>
                   <p
-                    className="anton flex items-baseline mt-3"
-                    style={{ fontSize: 'clamp(44px, 5vw, 72px)' }}
+                    className="anton flex items-baseline relative"
+                    style={{ fontSize: 'clamp(44px, 5vw, 72px)', color: stat.color }}
                   >
                     <span className="flex">
                       {formatted.split('').map((char, ci) =>
@@ -219,7 +243,7 @@ export default function Craft() {
                       <span className="stat-suffix-inner block">{stat.suffix}</span>
                     </span>
                   </p>
-                  <p className="stat-label eyebrow mt-2" style={{ opacity: 0.55 }}>{stat.label}</p>
+                  <p className="stat-label eyebrow mt-2 relative" style={{ opacity: 0.55 }}>{stat.label}</p>
                 </div>
               );
             })}

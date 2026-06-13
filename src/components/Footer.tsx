@@ -146,7 +146,16 @@ export default function Footer({ showToast }: FooterProps) {
           style={{ borderTop: '1px solid rgba(255,255,255,0.15)', opacity: 0 }}
         >
           <p className="text-[11px] uppercase" style={{ letterSpacing: '0.14em', opacity: 0.5 }}>
-            © 2026 ToonPop — All rights reserved
+            © 2026 ToonPop — Designed by{' '}
+            <a
+              href="https://www.mohammedalfakir.site/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-100"
+              style={{ opacity: 0.85, textDecoration: 'underline', textUnderlineOffset: '3px', transition: 'opacity 150ms' }}
+            >
+              Mohammed Alfakir
+            </a>
           </p>
           <button type="button" aria-label="Back to top" onClick={scrollToTop} className="btn-circle w-11 h-11">
             <ArrowUp size={16} strokeWidth={2.25} />

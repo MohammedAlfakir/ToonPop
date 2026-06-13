@@ -82,3 +82,35 @@ body {
   transform: scale(1.05);
   background-color: var(--btn-hover, rgba(255, 255, 255, 0.12));
 }
+
+/*
+  Collection card CTA — a single solid pill that fuses the add-to-cart
+  action with the price. White fill pops against the pastel panels; the
+  "+" badge spins on hover and the whole pill lifts.
+*/
+.card-cta {
+  background: #ffffff;
+  color: #111111;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 220ms ease;
+}
+.card-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+.card-cta-plus {
+  width: 30px;
+  height: 30px;
+  background: #111111;
+  color: #ffffff;
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.card-cta:hover .card-cta-plus {
+  transform: rotate(90deg);
+}
